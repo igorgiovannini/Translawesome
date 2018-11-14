@@ -1,4 +1,5 @@
-﻿using ch.igorgiovannini.Translawesome.Demo.Translations;
+﻿using ch.igorgiovannini.Translawesome.Caching;
+using ch.igorgiovannini.Translawesome.Demo.Translations;
 using ch.igorgiovannini.Translawesome.Providers;
 using ch.igorgiovannini.Translawesome.Services;
 using Microsoft.AspNetCore.Builder;
@@ -22,7 +23,8 @@ namespace ch.igorgiovannini.Translawesome.Demo
         {
             services.AddMemoryCache();
             services.AddScoped<ITranslationProvider, CustomTranslationProvider>();
-            services.AddTransient<ITranslawesomeService, TranslawesomeService>();
+            services.AddScoped<ITranslawesomeService, TranslawesomeService>();
+            services.AddScoped<ICacheService, MemoryCacheService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

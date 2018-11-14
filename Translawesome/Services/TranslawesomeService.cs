@@ -1,28 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ch.igorgiovannini.Translawesome.Caching;
 using ch.igorgiovannini.Translawesome.Models;
-using ch.igorgiovannini.Translawesome.Providers;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace ch.igorgiovannini.Translawesome.Services
 {
     public class TranslawesomeService : ITranslawesomeService
     {
-        private const string TRANSLAWESOME_CACHE_IDENTIFIER = "TranslawesomeCache";
-        private readonly IMemoryCache _memoryCache;
-        private readonly MemoryCacheEntryOptions _cacheExpirationOptions;
-        protected readonly ITranslationProvider TranslationProvider;
-
-        public TranslawesomeService(ITranslationProvider translationProvider, IMemoryCache memoryCache)
+        private readonly ICacheService _cacheService;
+        public TranslawesomeService(ICacheService cacheService)
         {
-            TranslationProvider = translationProvider;
-            _memoryCache = memoryCache;
-            _cacheExpirationOptions = new MemoryCacheEntryOptions
-            {
-                AbsoluteExpiration = DateTime.Now.AddMonths(1),
-                Priority = CacheItemPriority.NeverRemove
-            };
+            _cacheService = cacheService;
         }
 
         public string GetTranslationByKey(string key, string language)
@@ -39,23 +28,12 @@ namespace ch.igorgiovannini.Translawesome.Services
 
         protected IList<Translation> GetTranslations()
         {
-            if (!_memoryCache.TryGetValue(TRANSLAWESOME_CACHE_IDENTIFIER, out IList<Translation> cache))
-            {
-                cache = ReloadTranslations();
-            }
-            return cache;
+            return _cacheService.RetrieveTranslationsCached();
         }
 
-        public IList<Translation> ReloadTranslations()
+        public void ReloadTranslations()
         {
-            _memoryCache.Remove(TRANSLAWESOME_CACHE_IDENTIFIER);
-            var cache = TranslationProvider.GetTranslations();
-            _memoryCache.Set(TRANSLAWESOME_CACHE_IDENTIFIER, cache, new MemoryCacheEntryOptions
-            {
-                AbsoluteExpiration = DateTime.Now.AddMonths(1),
-                Priority = CacheItemPriority.NeverRemove
-            });
-            return cache;
+            _cacheService.ReloadCache();
         }
     }
 }

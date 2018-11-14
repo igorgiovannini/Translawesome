@@ -9,15 +9,13 @@
     <Folder Include="Providers\" />
     <Folder Include="Services\" />
     <Folder Include="Models\" />
+    <Folder Include="Caching\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.1.2" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.1.2" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Remove="Services\TranslawesomeServiceBase.cs" />
     <Compile Remove="Class1.cs" />
+    <Compile Remove="Models %28copy%29\Translation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.ComponentModel.Annotations">

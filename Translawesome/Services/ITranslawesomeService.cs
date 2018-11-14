@@ -7,7 +7,7 @@ namespace ch.igorgiovannini.Translawesome.Services
     {
         string GetTranslationByKey(string key, string language);
 
-        IList<Translation> ReloadTranslations();
+        void ReloadTranslations();
 
         IDictionary<string, string> GetTranslations(string language);
     }
