@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>ch.igorgiovannini.Translawesome</RootNamespace>
     <PackageId>Translawesome</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>Igor Giovannini</Authors>
     <PackageReleaseNotes>For full release notes see https://github.com/igorgiovannini/Translawesome/blob/master/releasenotes.md</PackageReleaseNotes>
     <PackageLicenseUrl>https://github.com/igorgiovannini/Translawesome/blob/master/LICENSE.md</PackageLicenseUrl>
