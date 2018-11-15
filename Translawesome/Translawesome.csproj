@@ -3,6 +3,16 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>ch.igorgiovannini.Translawesome</RootNamespace>
+    <PackageId>Translawesome</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Igor Giovannini</Authors>
+    <PackageReleaseNotes>For full release notes see https://github.com/igorgiovannini/Translawesome/blob/master/releasenotes.md</PackageReleaseNotes>
+    <PackageLicenseUrl>https://github.com/igorgiovannini/Translawesome/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/igorgiovannini/Translawesome</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/igorgiovannini/Translawesome.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Optimize>false</Optimize>
+    <Description>Translations management for Angular made simple</Description>
   </PropertyGroup>
 
   <ItemGroup>

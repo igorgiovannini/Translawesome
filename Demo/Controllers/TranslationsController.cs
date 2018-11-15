@@ -6,11 +6,11 @@ namespace ch.igorgiovannini.Translawesome.Demo.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class TranslationsController : ControllerBase
     {
         private readonly ITranslawesomeService _translawesomeService;
 
-        public ValuesController(ITranslawesomeService translawesomeService) {
+        public TranslationsController(ITranslawesomeService translawesomeService) {
             _translawesomeService = translawesomeService;
         }
 
@@ -24,6 +24,13 @@ namespace ch.igorgiovannini.Translawesome.Demo.Controllers
         public ActionResult<IDictionary<string, string>> GetTranslations(string language)
         {
             return Ok(_translawesomeService.GetTranslations(language));
+        }
+
+
+        [HttpGet("Reload")]
+        public ActionResult Reset() {
+            _translawesomeService.ReloadTranslations();
+            return NoContent();
         }
     }
 }
